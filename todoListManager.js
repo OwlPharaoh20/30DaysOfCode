@@ -1,94 +1,65 @@
-//Project - Todo List manager 
-//JS concept in focus : Functions and methods 
+// Import the inquirer module for creating a command-line interface
+const inquirer = require('inquirer');
 
-//Import the readline Module to handle user CLI input in node.js 
-
-const readline = require('readline');
-
-//create an interface for reading user input from the console 
-
-const rl = readline.createInterface({
-     input: process.stdin,
-     output : process.stdout
-});
-
-//Initialize an empty array to store to-do tasks
-let toDoList = [];
-
-//Function to display all tasks
-function displayTasks () {
-    if(toDoList.length === 0){
-        console.log("Your To-do List is empty.")
-    } else {
-        console.log("Your Todo List");
-        toDoList.forEach((task,index)=> {
-            console.log(`${index + 1}. ${task}`);
-         });
-    }
-
+// Object constructor function for creating Book objects
+function Book(title, author) {
+    this.title = title;
+    this.author = author;
+    this.getDetails = function() {
+        return `${this.title} by ${this.author}`; // Object method to get book details
+    };
 }
 
-//Function to add task 
-function addTask(task) {
-    // Check if task is defined and not empty
-    if (!task) {
-        console.log("Error: Task cannot be empty.");
-        return;
-    }
-    toDoList.push(task);
-    console.log(`Task added: ${task}`);
+// Array to hold book collection
+const bookCollection = [];
+
+// Function to add a book to the collection
+function addBook() {
+    inquirer.prompt([
+        { type: 'input', name: 'title', message: 'Enter the book title:' },
+        { type: 'input', name: 'author', message: 'Enter the book author:' }
+    ]).then(answers => {
+        const newBook = new Book(answers.title, answers.author); // Creating a new Book object
+        bookCollection.push(newBook); // Adding the new book to the collection array
+        console.log('Book added successfully!');
+        mainMenu(); // Return to main menu
+    });
 }
 
-
-
-//Function to remove task from the list 
-function removeTask (taskNumber ) {
-    if (taskNumber > 0 && taskNumber <= toDoList.length) {
-        const removedTask = toDoList.splice(taskNumber -1, 1); // Remove Task
-        console.log(`Task "${removedTask}" removed from your to-do list.`);
-    } else {
-        console.log("Invalid task number.");
-    }
+// Function to view all books in the collection
+function viewBooks() {
+    console.log("\nYour Book Collection:");
+    bookCollection.forEach(book => {
+        console.log(book.getDetails()); // Using object method to display book details
+    });
+    mainMenu(); // Return to main menu
 }
 
-//Function to handle user input and interact with the to-do list
-
-// Function to handle user input and interact with the to-do list
-function handleInput() {
-    rl.question("What would you like to do? (add, remove, display, exit): ", function (command) {
-        switch (command) {
-            case "add":
-                // Prompt user to enter the task
-                rl.question("Enter the task you want to add: ", function (task) {
-                    addTask(task); // Correctly pass 'task' to addTask function
-                    handleInput(); // Re-prompt after adding
-                });
+// Main menu function to choose options
+function mainMenu() {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'action',
+            message: 'What would you like to do?',
+            choices: ['Add Book', 'View Books', 'Exit']
+        }
+    ]).then(answer => {
+        switch (answer.action) {
+            case 'Add Book':
+                addBook(); // Option to add a book
                 break;
-            case "remove":
-                rl.question("Enter the task number to remove: ", function (taskNumber) {
-                    removeTask(parseInt(taskNumber)); // Use the task number to remove task
-                    handleInput(); // Re-prompt after removing
-                });
+            case 'View Books':
+                viewBooks(); // Option to view books
                 break;
-            case "display":
-                displayTasks(); // Display current tasks
-                handleInput(); // Re-prompt after displaying
-                break;
-            case "exit":
-                console.log("Goodbye!");
-                rl.close(); // Close the readline interface
-                break;
-            default:
-                console.log("Invalid command. Please enter add, remove, display, or exit.");
-                handleInput(); // Re-prompt after invalid command
+            case 'Exit':
+                console.log('Goodbye!');
+                process.exit(); // Exit the program
                 break;
         }
     });
 }
 
-
-//Start the To-do List manager 
-console.log( "Welcome to your To-Do List manager!");
-
-handleInput(); //Initial Prompt
-
+// Welcome message and start of the application
+console.log("Welcome to the Book Collection Manager!");
+mainMenu(); // Initialize the main menu
