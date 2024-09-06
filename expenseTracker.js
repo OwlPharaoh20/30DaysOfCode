@@ -18,14 +18,14 @@ function mainMenu() {
             type: 'list',
             name: 'action',
             message: 'What would you like to do?',
-            choices : ['Add expense', 'Daily Expenses', 'Calculate Total', 'Exit'],
+            choices : ['Add expense', 'Display Expenses', 'Calculate Total', 'Exit'],
         }
     ]).then((answer) => {
         //Use if-else statements to handle the user's choice
         if(answer.action === 'Add expense') {
             addExpense();
-        } else if ( answer.action === 'Daily Expenses') {
-            dailyExpenses();
+        } else if ( answer.action === 'Display Expenses') {
+            displayExpenses();
         } else if (answer.action === 'Calculate total') {
             calculateTotal();
         } else {
