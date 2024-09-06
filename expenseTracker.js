@@ -47,11 +47,23 @@ function displayExpenses() {
 }
 
 // Function to calculate the total of all expenses
+// Corrected Feature: Calculate Total Expenses
 function calculateTotal() {
-    const total = expenses.reduce((acc, expense) => acc + expense.amount, 0);
-    console.log(`Total Expenses: $${total}`);
-    mainMenu(); // Go back to the main menu after calculating total
+    if (expenses.length === 0) {
+        console.log("No expenses to calculate.");
+        return mainMenu(); // Go back to the main menu if no expenses exist
+    }
+
+    // Corrected: Summing the expenses
+    const total = expenses.reduce((accumulator, expense) => accumulator + parseFloat(expense.amount), 0);
+
+    // Format the total to include commas and two decimal places (e.g., 1,234.56)
+    const formattedTotal = total.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+
+    console.log(`Total Expenses: ${formattedTotal}`);
+    mainMenu(); // Go back to the main menu after displaying total
 }
+
 
 // New Feature: Edit Expense
 function editExpense() {
@@ -98,13 +110,14 @@ function editExpense() {
 }
 
 // Main menu to select options
+// Adjust the choices in the mainMenu function
 function mainMenu() {
     inquirer.prompt([
         {
             type: 'list',
             name: 'action',
             message: 'What would you like to do?',
-            choices: ['Add expense', 'Display Expenses', 'Edit Expense', 'Calculate Total', 'Exit']
+            choices: ['Add expense', 'Display Expenses', 'Edit Expense', 'Delete Expense', 'Calculate Total', 'Exit']
         }
     ]).then(answer => {
         switch (answer.action) {
@@ -114,8 +127,11 @@ function mainMenu() {
             case 'Display Expenses':
                 displayExpenses();
                 break;
-            case 'Edit Expense': // Call the editExpense function
+            case 'Edit Expense':
                 editExpense();
+                break;
+            case 'Delete Expense': // Call the deleteExpense function
+                deleteExpense();
                 break;
             case 'Calculate Total':
                 calculateTotal();
@@ -126,6 +142,31 @@ function mainMenu() {
         }
     });
 }
+
+//New Feature: Delete Expense
+function deleteExpense() {
+    if (expenses.length === 0) {
+        console.log("No expenses to delete.");
+        return mainMenu(); //Go back to the main menu if no expenses exist
+    }
+
+    //Ask the user which expense they want to delete  
+    inquirer.prompt([
+        {
+            type: 'List',
+            name: 'expenseIndex',
+            message: 'Select an expense to delete:',
+            choices: expenses.map((expense, index) => `${index + 1}. ${expense.description}: $${expense.amount}`)
+        }
+    ]).then(answer => {
+        const expenseIndex = parseInt(answer.expenseIndex.split('.')[0]) - 1; //Extract the index from the choice
+        const deletedExpense = expenses.splice(expenseIndex, 1); //Remove the selected expense
+        console.log(`Deleted expense: ${deletedExpense[0].description} - $${deletedExpense[0].amount}`);
+        mainMenu(); //Go back to the main menu after deletion
+    })
+}
+
+
 
 // Start the app by calling the mainMenu function
 mainMenu();
