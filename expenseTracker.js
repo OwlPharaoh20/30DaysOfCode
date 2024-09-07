@@ -170,3 +170,4 @@ function deleteExpense() {
 
 // Start the app by calling the mainMenu function
 mainMenu();
+ 
