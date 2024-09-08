@@ -2,6 +2,7 @@
   "type": "module",
   "dependencies": {
     "commander": "^12.1.0",
-    "inquirer": "^10.1.8"
+    "inquirer": "^10.1.8",
+    "yargs": "^17.7.2"
   }
 }
