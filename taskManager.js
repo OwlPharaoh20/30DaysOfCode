@@ -14,8 +14,9 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import fs from 'fs';
 
-// File path to store tasks
+// File path to store tasks and ID counter
 const FILE_PATH = 'tasks.json';
+const ID_PATH = 'id.json';
 
 // Load tasks from the file
 function loadTasks() {
@@ -31,20 +32,40 @@ function saveTasks() {
     fs.writeFileSync(FILE_PATH, JSON.stringify(tasks, null, 2));
 }
 
+// Load next ID from the file
+function loadNextId() {
+    if (fs.existsSync(ID_PATH)) {
+        const data = fs.readFileSync(ID_PATH);
+        return JSON.parse(data).nextId || 1;
+    }
+    return 1;
+}
+
+// Save next ID to the file
+function saveNextId() {
+    fs.writeFileSync(ID_PATH, JSON.stringify({ nextId }));
+}
+
 // Initialize task ID counter
-let taskId = 1; 
+let nextId = loadNextId(); 
 let tasks = loadTasks();  // Load tasks from the file
 
+// Ensure task IDs are correctly initialized
+if (tasks.length > 0) {
+    nextId = Math.max(...tasks.map(task => task.id)) + 1;
+}
+
 // Function to add a new task
-function addTask(title, priority = 'low') {
+function addTask(title, priority) {
     const task = {
-        id: taskId++,  // Automatically increment task ID
+        id: nextId++, // Assign the next unique ID
         title,
-        priority,
-        completed: false
+        priority, // Use priority as intended
+        completed: false // Initialize task as not completed
     };
     tasks.push(task);
-    saveTasks();  // Save tasks to the file
+    saveTasks(); // Save tasks to file
+    saveNextId(); // Save next ID to file
     console.log(`Task added: ${title} (Priority: ${priority})`);
 }
 
@@ -53,7 +74,7 @@ function completeTask(id) {
     const task = tasks.find(task => task.id === id);
     if (task) {
         task.completed = true;
-        saveTasks();  // Save tasks to the file
+        saveTasks(); // Save tasks to file
         console.log(`Task ${id} marked as completed`);
     } else {
         console.log(`Task with ID ${id} not found.`);
@@ -66,13 +87,13 @@ function viewTasks() {
         console.log("No tasks found.");
     } else {
         console.log("Your tasks:");
-        tasks.forEach(task => {
+        tasks.forEach((task) => {
             console.log(`${task.id}. ${task.title} - Priority: ${task.priority} (Completed: ${task.completed ? 'Yes' : 'No'})`);
         });
     }
 }
 
-// Function to filter tasks by status
+// Function to filter tasks by status 
 function filterTasks(status) {
     const filteredTasks = tasks.filter(task => task.completed === (status === 'completed'));
     if (filteredTasks.length === 0) {
@@ -87,7 +108,9 @@ function filterTasks(status) {
 // Function to clear all tasks
 function clearTasks() {
     tasks = [];
-    saveTasks();  // Save tasks to the file
+    nextId = 1; // Reset ID counter
+    saveTasks(); // Save tasks to file
+    saveNextId(); // Save next ID to file
     console.log("All tasks cleared.");
 }
 
