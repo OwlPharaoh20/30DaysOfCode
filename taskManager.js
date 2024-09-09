@@ -81,17 +81,16 @@ function completeTask(id) {
     }
 }
 
-// Function to view all tasks
 function viewTasks() {
     if (tasks.length === 0) {
-        console.log("No tasks found.");
+      console.log("No tasks found.");
     } else {
-        console.log("Your tasks:");
-        tasks.forEach((task) => {
-            console.log(`${task.id}. ${task.title} - Priority: ${task.priority} (Completed: ${task.completed ? 'Yes' : 'No'})`);
-        });
+      console.log("Your tasks:");
+      tasks.forEach((task) => {
+        console.log(`${task.id}. ${task.title} - Priority: ${task.priority} (Completed: ${task.completed ? 'Yes' : 'No'})`);
+      });
     }
-}
+  }
 
 // Function to filter tasks by status 
 function filterTasks(status) {
