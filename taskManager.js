@@ -10,13 +10,30 @@ Features:
 - Clear Tasks: Clear all tasks.
 */
 
-// Import yargs for CLI interactions
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
+import fs from 'fs';
 
-// Store all tasks
-let tasks = [];
-let taskId = 1; // ID to track each task
+// File path to store tasks
+const FILE_PATH = 'tasks.json';
+
+// Load tasks from the file
+function loadTasks() {
+    if (fs.existsSync(FILE_PATH)) {
+        const data = fs.readFileSync(FILE_PATH);
+        return JSON.parse(data);
+    }
+    return [];
+}
+
+// Save tasks to the file
+function saveTasks() {
+    fs.writeFileSync(FILE_PATH, JSON.stringify(tasks, null, 2));
+}
+
+// Initialize task ID counter
+let taskId = 1; 
+let tasks = loadTasks();  // Load tasks from the file
 
 // Function to add a new task
 function addTask(title, priority = 'low') {
@@ -27,8 +44,8 @@ function addTask(title, priority = 'low') {
         completed: false
     };
     tasks.push(task);
+    saveTasks();  // Save tasks to the file
     console.log(`Task added: ${title} (Priority: ${priority})`);
-    console.log(tasks);  // Log the tasks array to verify it is being updated
 }
 
 // Function to mark a task as completed
@@ -36,7 +53,8 @@ function completeTask(id) {
     const task = tasks.find(task => task.id === id);
     if (task) {
         task.completed = true;
-        console.log(`Task "${task.title}" marked as completed.`);
+        saveTasks();  // Save tasks to the file
+        console.log(`Task ${id} marked as completed`);
     } else {
         console.log(`Task with ID ${id} not found.`);
     }
@@ -56,13 +74,10 @@ function viewTasks() {
 
 // Function to filter tasks by status
 function filterTasks(status) {
-    const isCompleted = status === 'completed';
-    const filteredTasks = tasks.filter(task => task.completed === isCompleted);
-
+    const filteredTasks = tasks.filter(task => task.completed === (status === 'completed'));
     if (filteredTasks.length === 0) {
         console.log(`No ${status} tasks found.`);
     } else {
-        console.log(`${status.charAt(0).toUpperCase() + status.slice(1)} tasks:`);
         filteredTasks.forEach(task => {
             console.log(`${task.id}. ${task.title} - Priority: ${task.priority} (Completed: ${task.completed ? 'Yes' : 'No'})`);
         });
@@ -72,7 +87,7 @@ function filterTasks(status) {
 // Function to clear all tasks
 function clearTasks() {
     tasks = [];
-    taskId = 1; // Reset taskId
+    saveTasks();  // Save tasks to the file
     console.log("All tasks cleared.");
 }
 

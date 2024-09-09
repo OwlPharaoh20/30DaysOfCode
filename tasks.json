@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "Grocery Shopping",
+    "priority": "High",
+    "completed": true
+  },
+  {
+    "id": 1,
+    "title": "Workout",
+    "priority": "Medium",
+    "completed": false
+  },
+  {
+    "id": 1,
+    "title": "Finish project report",
+    "priority": "High",
+    "completed": false
+  },
+  {
+    "id": 1,
+    "title": "Call mom",
+    "priority": "Medium",
+    "completed": false
+  },
+  {
+    "id": 1,
+    "title": "Buy birthday gift",
+    "priority": "High",
+    "completed": false
+  },
+  {
+    "id": 1,
+    "title": "Schedule dentist appointment",
+    "priority": "Low",
+    "completed": false
+  },
+  {
+    "id": 1,
+    "title": "Organize desk",
+    "priority": "Medium",
+    "completed": false
+  }
+]
