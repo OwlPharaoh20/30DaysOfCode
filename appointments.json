@@ -1,0 +1,22 @@
+[
+  {
+    "patientName": "Alice",
+    "doctorName": "Dr. John"
+  },
+  {
+    "patientName": "Bob",
+    "doctorName": "Dr. Lisa"
+  },
+  {
+    "patientName": "Charlie",
+    "doctorName": "Dr Smith"
+  },
+  {
+    "patientName": "Dana",
+    "doctorName": "Dr. Lisa"
+  },
+  {
+    "patientName": "Eva",
+    "doctorName": "Dr. John"
+  }
+]
