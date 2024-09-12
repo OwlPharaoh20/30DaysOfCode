@@ -1,0 +1,18 @@
+[
+  {
+    "taskName": "Buy groceries",
+    "completed": true
+  },
+  {
+    "taskName": "Cook dinner",
+    "completed": false
+  },
+  {
+    "taskName": "Gym time",
+    "completed": false
+  },
+  {
+    "taskName": "Water the plants",
+    "completed": false
+  }
+]
