@@ -4,11 +4,43 @@
     "completed": true
   },
   {
-    "taskName": "Cook dinner",
+    "taskName": "Gym time",
     "completed": false
   },
   {
-    "taskName": "Gym time",
+    "taskName": "Water the plants",
+    "completed": true
+  },
+  {
+    "taskName": "Call the electrician",
+    "completed": false
+  },
+  {
+    "taskName": "Complete JavaScript project",
+    "completed": false
+  },
+  {
+    "taskName": "Complete JavaScript project",
+    "completed": true
+  },
+  {
+    "taskName": "Respond to client emails",
+    "completed": false
+  },
+  {
+    "taskName": "Organize the work desk",
+    "completed": false
+  },
+  {
+    "taskName": "Go for a 30-minute run",
+    "completed": false
+  },
+  {
+    "taskName": "Do some laundry",
+    "completed": false
+  },
+  {
+    "taskName": "Plan weekend trip itinerary",
     "completed": false
   }
 ]
