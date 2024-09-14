@@ -10,5 +10,45 @@
   {
     "title": "GitHub",
     "url": "https://github.com"
+  },
+  {
+    "title": "GitHub",
+    "url": "https://github.com"
+  },
+  {
+    "title": "MDN Web Docs",
+    "url": "https://developer.mozilla.org"
+  },
+  {
+    "title": "YouTube",
+    "url": "https://www.youtube.com"
+  },
+  {
+    "title": "Reddit",
+    "url": "https://www.reddit.com"
+  },
+  {
+    "title": "LinkedIn",
+    "url": "https://www.linkedin.com"
+  },
+  {
+    "title": "LinkedIn",
+    "url": "https://www.linkedin.com"
+  },
+  {
+    "title": "FreeCodeCamp",
+    "url": "https://www.freecodecamp.org"
+  },
+  {
+    "title": "Dev.to",
+    "url": "https://dev.to"
+  },
+  {
+    "title": "Hacker News",
+    "url": "https://news.ycombinator.com"
+  },
+  {
+    "title": "Wikipedia",
+    "url": "https://www.wikipedia.org"
   }
 ]
