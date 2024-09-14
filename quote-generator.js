@@ -18,7 +18,7 @@ import { promises as fs } from 'fs';
 import { stringify } from 'querystring';
 
 //Store API URL inside variable 
-const QUOTE_API_URL = 'https://api.quotable.io/random';
+const QUOTE_API_URL = 'https://official-joke-api.appspot.com/random_joke';
 
 
 //Create DATA FILE TO Store and persist the quotes 
@@ -39,26 +39,26 @@ async function loadQuotes() {
     }
 }
 
-//Save quotes to file (async)
+// Save quotes to file (async)
 async function saveQuotes(quotes) {
     try {
-        await fs.writeFile(DATA_FILE, JSON,stringify(quotes, null,2));
-    } catch (error){
+        await fs.writeFile(DATA_FILE, JSON.stringify(quotes, null, 2), 'utf-8'); // Make sure the encoding is 'utf-8'
+    } catch (error) {
         console.error("Error saving quotes:", error);
     }
 }
 
-//Fetch a ransom quote from the API (async)
+
 async function fetchRandomQuote() {
-   try {
-    const response = await fetch(QUOTE_API_URL);
-    const data = await response.json();
-    //The function will return the value of data
-    return data;
-   }catch (error) {
-        console.error("Error fetching quote:", error);
+    try {
+        const response = await fetch(QUOTE_API_URL);
+        const data = await response.json();
+        return { content: `${data.setup} - ${data.punchline}`, author: "Unknown" };
+    } catch (error) {
+        console.error("Error fetching joke:", error);
     }
-} 
+}
+
 
 //Add a new random quote (async) 
 async function addRandomQuote() {
