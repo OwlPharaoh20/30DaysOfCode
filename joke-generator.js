@@ -10,17 +10,17 @@ Concept Focus:
     - CLI: Allow users to fetch a new joke or view stored jokes from the terminal.
 */
 
-// Import necessary modules
+//Import necessary modules
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import fetch from 'node-fetch';
 import { promises as fs } from 'fs';
 
-// Store API URL inside a variable
+// Store API URL inside variable 
 const JOKE_API_URL = 'https://official-joke-api.appspot.com/random_joke';
 
-// Create a data file to store and persist the jokes
-const DATA_FILE = 'jokes.json';
+// Create DATA FILE TO Store and persist the jokes
+const DATA_FILE = 'jokes.json'; // Updated to save jokes
 
 // Load jokes from file (async)
 async function loadJokes() {
@@ -40,13 +40,13 @@ async function loadJokes() {
 // Save jokes to file (async)
 async function saveJokes(jokes) {
     try {
-        await fs.writeFile(DATA_FILE, JSON.stringify(jokes, null, 2), 'utf-8'); // Make sure the encoding is 'utf-8'
+        await fs.writeFile(DATA_FILE, JSON.stringify(jokes, null, 2), 'utf-8');
     } catch (error) {
         console.error("Error saving jokes:", error);
     }
 }
 
-// Fetch a random joke from the API (async)
+// Fetch a random joke (async)
 async function fetchRandomJoke() {
     try {
         const response = await fetch(JOKE_API_URL);
