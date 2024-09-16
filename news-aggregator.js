@@ -82,6 +82,18 @@ function displayArticles(articles) {
     })
 }
 
+//Fetch news by source
+async function fetchNewsBySource(source) {
+    try {
+        const response = await fetch(`${NEWS_API_URL}top-headlines?sources=${source}&apiKey=${API_KEY}`);
+        const data = await response.json();
+        return data.articles;
+    } catch (error) {
+        console.error('Error fetching news by source:', error);
+    }
+}
+
+
 
 //Save the fethched news
 async function saveFetchedNews(keyword) {
@@ -117,15 +129,26 @@ async function listSavedNews() {
 }
 
 // Yargs CLI commands setup
+// Yargs CLI commands setup
 yargs(hideBin(process.argv))
     .command('latest <keyword>', 'Fetch the latest news by keyword', {}, async (argv) => {
         await fetchLatestNews(argv.keyword);
     })
     .command('category <category>', 'Fetch news by category', {}, async (argv) => {
-        await fetchNewsByCategory(argv.category);
+        const articles = await fetchNewsByCategory(argv.category);
+        displayArticles(articles); // Display the articles after fetching
     })
     .command('source <source>', 'Fetch news by source', {}, async (argv) => {
-        await fetchNewsBySource(argv.source);
+        const news = await fetchNewsBySource(argv.source);
+        if (news && news.length > 0) {
+            news.forEach((article, index) => {
+                console.log(`${index + 1}. ${article.title}`);
+                console.log(`   Source: ${article.source.name}`);
+                console.log(`   Description: ${article.description}\n`);
+            });
+        } else {
+            console.log('No news articles found for this source.');
+        }
     })
     .command('search <keyword>', 'Search for news articles by keyword', {}, async (argv) => {
         await fetchLatestNews(argv.keyword);
