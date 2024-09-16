@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 /*
+DAY 20
 PROJECT DETAILS
 Project Name: Movie Information Fetcher
 JavaScript Concept: Fetch API, Async/Await, CLI, Object Manipulation
