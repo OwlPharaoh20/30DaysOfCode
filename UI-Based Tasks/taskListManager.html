@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List Manager </title>
+    <style> 
+        body { font-family: Arial, sans-serif;}
+        .completed { text-decoration: line-through; color: gray;}
+    </style>
+</head>
+<body>
+    
+</body>
+</html>a<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List Manager</title>
+    <style>
+        /* Body styling */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff; /* Light background */
+            font-family: Arial, sans-serif;
+        }
+
+        /* Card styling */
+        .card {
+            background-color: #e0f7fa; /* Light blue background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        /* Input and button styling */
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #00796b;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004d40;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            text-align: left;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: white;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        /* Delete button styling */
+        li button {
+            background-color: #f44336;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        li button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+ <div class="card">
+   <h1> Task List Manager </h1>
+   <input type="text" id="taskInput" placeholder="Enter a new task"/> 
+   <button id="addTaskBtn"> Add Task </button> 
+   <ul id="taskList"></ul> 
+ </div>
+ <script> 
+    //Add task event
+    document.getElementById('addTaskBtn').addEventListener('click', function() {
+        const taskInput = document.getElementById('taskInput');
+        const taskText = taskInput.value
+
+        if (taskText) {
+            //Create  new List item for the task
+            const li = document.createElement('li')
+            li.textContent = taskText;
+
+            //Add task completion toggle 
+            li.addEventListener('click', function() {
+                li.classList.toggle('completed');
+            });
+
+            //Add a delete button 
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = ' Delete';
+            deleteBtn.addEventListener('click', function() {
+                 li.remove();
+            });
+            li.appendChild(deleteBtn);
+            document.getElementById('taskList').appendChild(li);
+
+            //Clear the input field
+            taskInput.value = '';
+        }
+    });
+ </script>
+</body>
+</html>
