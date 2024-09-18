@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="icon" type="image/png" href="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?w=32&h=32&fit=crop">
+
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Add Tailwind CSS -->
+</head>
+<body class="flex flex-col items-center bg-gray-100 min-h-screen p-5">
+    <h1 class="text-2xl font-bold mb-6">Interactive Image Gallery</h1>
+    
+    <div class="grid grid-cols-4 gap-4">
+        <img class="w-24 h-24 cursor-pointer" src="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg" alt="Mountain">
+        <img class="w-24 h-24 cursor-pointer" src="https://images.pexels.com/photos/34950/pexels-photo.jpg" alt="Beach">
+        <img class="w-24 h-24 cursor-pointer" src="https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg" alt="Forest">
+        <img class="w-24 h-24 cursor-pointer" src="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg" alt="Desert">
+    </div>
+
+    <div class="mt-8">
+        <img class="w-72 h-72 border-4 border-gray-300" src="https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg" alt="Preview">
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const galleryImages = document.querySelectorAll('.gallery img');
+            const previewImage = document.querySelector('.preview img');
+    
+            if (!previewImage) {
+                console.error("Preview image element not found");
+                return; // Prevent further execution if preview image doesn't exist
+            }
+    
+            galleryImages.forEach(img => {
+                img.addEventListener('click', () => {
+                    previewImage.src = img.src;
+                    previewImage.alt = img.alt;
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>
