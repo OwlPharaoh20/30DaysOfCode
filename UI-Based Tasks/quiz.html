@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character set and responsive design -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page title -->
+    <title>Interactive Quiz App</title>
+
+    <!-- Linking the script file -->
+    <script defer src="quizHtmlScript.js"></script>
+
+    <!-- Including Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-50 flex justify-center items-center min-h-screen">
+    <!-- Container for the quiz card -->
+    <div class="bg-white p-8 rounded-lg shadow-lg w-96 text-center">
+        <!-- Title of the quiz -->
+        <h1 class="text-2xl font-bold mb-4">JavaScript Quiz</h1>
+
+        <!-- Area to display the current question -->
+        <div id="question-container" class="mb-6">
+            <p id="question" class="text-lg"></p>
+        </div>
+
+        <!-- Buttons for the multiple-choice answers -->
+        <div id="answer-buttons" class="flex flex-col space-y-4">
+            <button class="answer-btn bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Answer 1</button>
+            <button class="answer-btn bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Answer 2</button>
+            <button class="answer-btn bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Answer 3</button>
+            <button class="answer-btn bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Answer 4</button>
+        </div>
+
+        <!-- Button to move to the next question -->
+        <button id="next-btn" class="mt-6 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-700 hidden">Next</button>
+
+        <!-- Final score display -->
+        <p id="score" class="text-lg font-bold hidden"></p>
+    </div>
+</body>
+</html>
