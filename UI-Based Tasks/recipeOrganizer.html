@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Organizer</title>
+    <script defer src="recipeOrganizerScript.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-blue-50 flex items-center justify-center">
+    <!-- Centered container with restricted width -->
+    <div class="bg-white w-full max-w-lg p-8 rounded-lg shadow-lg">
+        <!-- Recipe Organizer Title -->
+        <h1 class="text-2xl font-bold mb-4 text-center">Recipe Organizer</h1>
+
+        <!-- Recipe Form -->
+        <div class="mb-4">
+            <input type="text" id="recipeName" placeholder="Recipe Name" class="border p-2 w-full rounded-lg mb-2">
+            <textarea id="recipeInstructions" placeholder="Recipe Instructions" class="border p-2 w-full rounded-lg mb-2"></textarea>
+            <select id="recipeCategory" class="border p-2 w-full rounded-lg mb-4">
+                <option value="">Select Category</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Snack">Snack</option>
+            </select>
+            <button id="addRecipeBtn" class="bg-green-500 text-white px-4 py-2 w-full rounded hover:bg-green-600 transition">Add Recipe</button>
+        </div>
+
+        <!-- Recipe List -->
+        <h2 class="text-xl font-semibold mb-2">Recipe List</h2>
+        <ul id="recipeList" class="list-disc pl-5 space-y-3"></ul>
+    </div>
+</body>
+</html>
