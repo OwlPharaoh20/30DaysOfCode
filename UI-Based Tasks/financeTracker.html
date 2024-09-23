@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen flex justify-center items-center">
+    <div class="bg-white shadow-lg rounded-lg p-8 max-w-lg w-full">
+        <h1 class="text-2xl font-bold mb-4 text-center">Personal Finance Tracker</h1>
+
+        <!-- Add Transaction Form -->
+        <form id="transactionForm" class="mb-6">
+            <div class="mb-4">
+                <input type="text" id="description" placeholder="Transaction Description" class="w-full p-2 border rounded">
+            </div>
+            <div class="mb-4">
+                <input type="number" id="amount" placeholder="Amount" class="w-full p-2 border rounded">
+            </div>
+            <div class="mb-4">
+                <select id="category" class="w-full p-2 border rounded">
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+            </div>
+            <button type="submit" class="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">Add Transaction</button>
+            <div class="flex justify-center mt-4">
+                <button id="clear-all-btn" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Clear All</button>
+            </div>
+            
+
+        </form>
+
+        <!-- Total Balance Display -->
+        <div class="text-center mb-6">
+            <h2 class="text-xl font-bold">Total Balance: $<span id="totalBalance">0</span></h2>
+        </div>
+
+        <!-- Income and Expense Totals -->
+        <div class="flex justify-between mb-4">
+            <div class="text-green-500">
+                <h3>Income: $<span id="totalIncome">0</span></h3>
+            </div>
+            <div class="text-red-500">
+                <h3>Expenses: $<span id="totalExpense">0</span></h3>
+            </div>
+        </div>
+
+        <!-- Transaction List -->
+        <ul id="transactionList" class="list-disc pl-5"></ul>
+    </div>
+
+    <script src="financeTracker.js"></script>
+</body>
+</html>
