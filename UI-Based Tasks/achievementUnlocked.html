@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievement Unlocked</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-blue-100 min-h-screen flex flex-col items-center justify-center">
+    <div class="max-w-4xl w-full p-8 bg-white rounded-lg shadow-lg text-center">
+        <h1 class="text-3xl font-bold mb-4">Achievement Unlocked!</h1>
+        <p class="mb-6">Congratulations on completing your 30-day JavaScript journey!</p>
+
+        <!-- Progress Bar -->
+        <div class="w-full bg-gray-200 rounded-full h-4 mb-6">
+            <div class="bg-green-500 h-4 rounded-full" style="width: 100%"></div>
+        </div>
+
+        <!-- Achievements Section -->
+        <div class="grid grid-cols-3 gap-4">
+            <div class="achievement-card">
+                <div class="bg-blue-500 text-white p-4 rounded-lg">
+                    <h3 class="font-bold">DOM Manipulation</h3>
+                </div>
+            </div>
+            <div class="achievement-card">
+                <div class="bg-green-500 text-white p-4 rounded-lg">
+                    <h3 class="font-bold">API Handling</h3>
+                </div>
+            </div>
+            <div class="achievement-card">
+                <div class="bg-purple-500 text-white p-4 rounded-lg">
+                    <h3 class="font-bold">Async/Await</h3>
+                </div>
+            </div>
+            <div class="achievement-card">
+                <div class="bg-yellow-500 text-white p-4 rounded-lg">
+                    <h3 class="font-bold">LocalStorage</h3>
+                </div>
+            </div>
+            <div class="achievement-card">
+                <div class="bg-pink-500 text-white p-4 rounded-lg">
+                    <h3 class="font-bold">Event Handling</h3>
+                </div>
+            </div>
+            <div class="achievement-card">
+                <div class="bg-red-500 text-white p-4 rounded-lg">
+                    <h3 class="font-bold">Fetch API</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certificate Section -->
+        <div class="mt-10">
+            <button class="bg-green-500 text-white px-6 py-2 rounded-lg hover:bg-green-600 transition">
+                Download Your Certificate
+            </button>
+        </div>
+    </div>
+
+    <script src="achievementUnlocked.js"></script>
+</body>
+</html>
+
